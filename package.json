@@ -4,9 +4,9 @@
   "description": "fullstackopen 2020 blogilista",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js",
-    "test": "echo \\\"error: no test specified\\\" && exit 1",
+    "start": "cross-env NODE_ENV=production node index.js",
+    "dev": "cross-env NODE_ENV=development nodemon index.js",
+    "test": "cross-env NODE_ENV=test jest --verbose --runInBand",
     "lint": "eslint ."
   },
   "repository": {
@@ -19,14 +19,22 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
+    "lodash": "^4.17.20",
     "mongoose": "^5.10.13"
   },
   "devDependencies": {
+    "cross-env": "^7.0.2",
     "eslint": "^7.13.0",
-    "nodemon": "^2.0.6"
+    "jest": "^26.6.3",
+    "nodemon": "^2.0.6",
+    "supertest": "^6.0.1"
   },
   "bugs": {
     "url": "https://github.com/mikaelbarlund/blogilista/issues"
   },
-  "homepage": "https://github.com/mikaelbarlund/blogilista#readme"
+  "homepage": "https://github.com/mikaelbarlund/blogilista#readme",
+  "jest": {
+    "testEnvironment": "node"
+  }
 }
