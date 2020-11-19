@@ -93,7 +93,7 @@ test('a specific blog can be viewed', async () => {
   const blogsAtStart = await helper.blogsInDb()
 
   const blogToView = blogsAtStart[0]
-  console.log(`/api/blogs/${blogToView.id}`)
+
   const resultBlog = await api
     .get(`/api/blogs/${blogToView.id}`)
     .expect(200)
@@ -102,6 +102,20 @@ test('a specific blog can be viewed', async () => {
   const processedBlogToView = JSON.parse(JSON.stringify(blogToView))
 
   expect(resultBlog.body).toEqual(processedBlogToView)
+})
+
+test('a specific blog can be updated', async () => {
+  const blogsAtStart = await helper.blogsInDb()
+
+  const blogToView = blogsAtStart[0]
+  blogToView.title = 'modified'
+  const resultBlog = await api
+    .put(`/api/blogs/${blogToView.id}`)
+    .send(blogToView)
+
+  // const processedBlogToView = JSON.parse(JSON.stringify(blogToView))
+
+  expect(resultBlog.body).toEqual(blogToView)
 })
 
 test('a blog can be deleted', async () => {
