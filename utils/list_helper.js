@@ -1,4 +1,3 @@
-var _ = require('lodash')
 
 const dummy = () => {
   return 1
